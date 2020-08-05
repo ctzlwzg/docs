@@ -45,4 +45,4 @@
 
   - [Git 入门下(转载)](zh-cn/other/git/git入门下)
 
-  - [面试总结](zh-cn/expect)
+  - [面试总结](zh-cn/other/interview/面试总结.md)
