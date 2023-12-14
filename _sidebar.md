@@ -4,7 +4,8 @@
 
 * **JavaScript**
 
-  - [JavaScript](zh-cn/frontEnd/js/js)
+  - [常用语法](zh-cn/frontEnd/js/js)
+  - [工具函数](zh-cn/frontEnd/js/utilsFunction)
 
 * **Vue**
 
