@@ -1,4 +1,4 @@
-- **Introduction**
+- **个人简介**
 
   - [简介](README.md)
 
@@ -22,7 +22,8 @@
 
 * **node**
 
-  - [命令](zh-cn/frontEnd/node/nodeCommand)
+  - [npm相关](zh-cn/frontEnd/node/nodeCommand)
+  - [n包](zh-cn/frontEnd/node/nCommand)
 
 * **后端**
 
