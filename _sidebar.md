@@ -16,10 +16,6 @@
 
   - [React](zh-cn/frontEnd/react/reactBase)
 
-* **小程序**
-
-  - [小程序](zh-cn/frontEnd/xcx/xcx)
-
 * **node**
 
   - [npm相关](zh-cn/frontEnd/node/nodeCommand)

@@ -56,7 +56,7 @@ npm cache clean -f
 ```bash
 npm config list
 ```
-> 配置国内仓库地址
+> 配置国内淘宝镜像地址（下载包更快）
 ```bash
 npm config set registry https://registry.npm.taobao.org/
 ```
