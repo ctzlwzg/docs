@@ -6,6 +6,8 @@
 2. 在某一组件中绑定自定义事件，可附加参数（触发当前实例上的事件。附加参数都会传给监听器回调）
 3. 在想要关联的组件中获取值（监听当前实例上的自定义事件。事件可以由 vm.$emit 触发。回调函数会接收所有传入事件触发函数的额外参数。）
 
+> bus.js 文件
+
 ```vue
 import Vue from 'vue';
 
@@ -32,6 +34,7 @@ if (this.userImg !== '') {
 }
 ```
 
+> 在xxx.vue文件中导入bus.js 文件
 ```vue
 import bus from '../common/bus';
 bus.$on('userImg', arg => {
