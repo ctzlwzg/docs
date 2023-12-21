@@ -37,10 +37,13 @@
 
   - [nginx 总结](zh-cn/rearEnd/nginx/nginx)
 
-* **其它**
+* **git总结**
 
-  - [Git 入门上(转载)](zh-cn/other/git/git入门上)
+  - [git 入门上(转载)](zh-cn/other/git/git入门上)
 
-  - [Git 入门下(转载)](zh-cn/other/git/git入门下)
+  - [git 入门下(转载)](zh-cn/other/git/git入门下)
 
+  - [git 个人总结](zh-cn/other/git/git总结)
+
+* 面试总结
   - [面试总结](zh-cn/other/interview/面试总结.md)
