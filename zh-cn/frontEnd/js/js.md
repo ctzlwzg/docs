@@ -67,6 +67,64 @@ let str = 1;
 [0, 1].includes(str) //true
 ```
 
+## 变量
+### var关键字
+- var声明作用域
+```js
+function test() {
+    var message = "hi"; // 局部变量
+}
+test();
+console.log(message); // 出错！
+function test() {
+    message = "hi"; // 全局变量
+}
+test();
+console.log(message); // "hi"
+```
+- var声明提升
+```js
+function foo() {
+    console.log(age);
+    var age = 26;
+}
+foo(); 
+// 打印 undefined
+// 即
+function foo() {
+    var age;
+    console.log(age);
+    age = 26;
+}
+foo();
+// 打印 undefined
+```
+
+> 之所以不会报错，是因为ECMAScript运行时age变量声明会提升到**函数作用域**的顶部
+```js
+if (true) {
+    var name = 'Matt';
+    console.log(name); // Matt
+}
+console.log(name); // Matt
+```
+> var 声明的范围是函数作用域，所以在if作用域的声明的变量，在外面可以获取到
+
+> **函数作用域** 这几个很字重要，这一特性就是和let const关键字声明变量的区别
+
+### let 声明
+```js
+if (true) {
+    let age = 26;
+    console.log(age); // 26
+}
+console.log(age); // ReferenceError: age 没有定义
+// 此时这样写就会报错了
+```
+> 原因：let声明的范围是**块作用域**
+
+### const 声明
+
 ## 字符串
 > 字符串转数组，通过逗号截取
 ```js
@@ -75,7 +133,7 @@ str.split(',');
 ```
 
 
-## 远算
+## 运算
 
 > 字符串转数字
 ```js
