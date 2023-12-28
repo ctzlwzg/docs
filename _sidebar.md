@@ -5,6 +5,7 @@
 * **JavaScript**
 
   - [常用语法](zh-cn/frontEnd/js/js)
+  - [变量](zh-cn/frontEnd/js/variable)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction)
 
 * **Vue**
