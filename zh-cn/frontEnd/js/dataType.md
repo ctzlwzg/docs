@@ -94,3 +94,20 @@ if(!aaa){
 }
 ```
 
+## Boolean类型
+Boolean(布尔值)类型有两个字面量：true和false。
+
+虽然布尔值只有两个，但其他类型的值都有相应布尔值的等价形式。
+要将一个其他类型的值转换为布尔值，可以调用Boolean()转型函数
+
+下表是不同类型与布尔值之间的转换规则
+
+| 数据类型 | 转换为true的值 | 转换为false的值 |
+| :----:  | :----: | :----: |
+| Boolean | true | false |
+| String | 非空字符串 | ""(空字符串) |
+| Number | 非零数值(包括无穷值) | 0、NaN |
+| Object | 非null对象 | null |
+| Undefined | 不存在 | undefined |
+
+!> 记住这些转换规则，后续会使用到的
