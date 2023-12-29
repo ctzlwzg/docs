@@ -6,6 +6,7 @@
 
   - [常用语法](zh-cn/frontEnd/js/js)
   - [变量](zh-cn/frontEnd/js/variable)
+  - [数据类型](zh-cn/frontEnd/js/dataType)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction)
 
 * **Vue**
