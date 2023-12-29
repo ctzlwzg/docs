@@ -60,3 +60,37 @@ if(!aaa){
 }
 
 ```
+
+## Null类型
+
+Null类型同样只有一个值，即特殊值null。逻辑上讲，null值表示一个空对象的指针，这也是给typeof传递一个null会返回"object"的原因。
+```js
+let aaa = null;
+
+console.log(typeof(aaa)) // "object"
+```
+
+!> 建议：在定义未来要保存对象值的变量时，建议使用null来初始化，而不是其他值，如 let obj = '';不建议。
+
+!> 这样只要检查这个变量的值是不是null就可以知道这个变量是否在后来被重新赋予了一个对象的引用
+
+undefined是有null派生而来的，因此ECMA-262 将它们定义为表面上相等
+```js
+console.log(undefined == null) // true
+```
+
+但他们的用途完全不同，在任何时候，只要变量要保存对象，而当时又没有那个对象可保存，就可以用null来填充改变量。
+
+> null是一个假值
+```js
+let aaa = null;
+
+if(aaa){
+  // 不会执行
+}
+
+if(!aaa){
+  // 会执行
+}
+```
+
