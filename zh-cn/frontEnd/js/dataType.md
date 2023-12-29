@@ -111,3 +111,37 @@ Boolean(布尔值)类型有两个字面量：true和false。
 | Undefined | 不存在 | undefined |
 
 !> 记住这些转换规则，后续会使用到的
+
+
+## Number类型
+Number类型表示整数和浮点值
+
+Infinity 表示正无穷大，-Infinity 表示负无穷大
+
+
+
+> NaN: "不是数值" （not a Number），用于表示本来要返回数值的操作失败了（而不是抛出错误）
+```js
+console.log(0/0); // 打印 NaN
+console.log(1/0); // 打印 Infinity
+console.log(1/-0); // 打印 -Infinity
+```
+
+NaN的特性：
+1. 任何涉及NaN的操作始终返回NaN（NaN / 1）
+2. NaN不等于包括NaN在内的任何值
+  ```js
+  console.log(NaN == NaN); // false
+  ```
+  因为特性二，ECMAScript提供了isNaN的函数。该函数接收一个参数，参数是任意类型的，然后判断是否"不是数字"，用于解决判断是否NaN的问题。
+
+isNaN的使用：
+```js
+console.log(isNaN(NaN));// true
+console.log(isNaN(1)); // false
+console.log(isNaN('1'));//false，隐式类型转换位数字1
+console.log(isNaN(false));//fasle,隐式类型转换位数字0
+console.log(isNaN(true));//false，隐式类型转换位数字0
+
+console.log(isNaN('wzg'));//true,不可以转换为数值
+```
