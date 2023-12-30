@@ -189,3 +189,47 @@ toString()方法，再按照转换字符串的规则转换。~~(没看懂，我�
 
 `parseFloat()`  xxx
 
+## String类型
+String（字符串）可以使用双引号，单引号，反引号表示
+
+字符串的特点：一旦创建，它的值就是`不可变的`
+
+`toString()`方法，用于把一个值转换为字符串
+```js
+let aaa = 1;
+aaa.toString();// '1' 变成字符串1
+```
+
+但是对于 null 或者undefined 调用toString方法的话，会报错无法读取属性。
+
+`VM61874:1 Uncaught TypeError: Cannot read properties of undefined (reading 'toString')`
+
+`VM61955:1 Uncaught TypeError: Cannot read properties of null (reading 'toString')`
+
+所以就有了第二种转化字符串的方法`String()`
+```js
+String(null); // 'null'
+String(undefined); // 'undefined'
+```
+
+`toString()`方法还可以传参，可以得到数值的二进制，八进制，十六进制或者其他进制的字符串
+```js
+let num = 20;
+num.toString();// '20'
+num.toString(2);//'10100'
+num.toString(8);//'24'
+num.toString(16);//'14'
+```
+
+`字符串插值`
+```js
+let num = 10;
+let str = `苹果的数量有${10}个`;
+```
+> 在插值表达式中可以调用函数和方法
+```js
+function getNum(){
+  return 10;
+}
+let str = `苹果的数量有${getNum()}个`;
+```
