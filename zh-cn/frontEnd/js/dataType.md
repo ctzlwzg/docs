@@ -186,6 +186,24 @@ toString()方法，再按照转换字符串的规则转换。~~(没看懂，我�
   parseInt("22.5");//22
   parseInt("22.5.2");//22
 ```
+`parseInt()`中第二个参数指定底数（进制数）
+```js
+let num = parseInt("0xAF", 16); // 175
+let num1 = parseInt("10", ''); // 2，
+let num1 = parseInt("10", false); // 2，
+let num1 = parseInt("10", undefined); // 2，
+let num1 = parseInt("10", null); // 2，
+let num1 = parseInt("10", 0); // 2，按二进制解析
+let num1 = parseInt("10", 1); // NaN
+let num1 = parseInt("10", 2); // 2，按二进制解析
+let num2 = parseInt("10", 8); // 8，按八进制解析
+let num3 = parseInt("10", 10); // 10，按十进制解析
+let num4 = parseInt("10", 16); // 16，按十六进制解析
+```
+!> 进制参数必须在2到36之间，但如果进制0，undefined，null，false默认还是十进制。这里和toString()方法转进制不同（只能2-36）
+
+!> 如果指定的进制不对,或者数据无法转换为对应的进制，都返回NaN。
+
 
 `parseFloat()`  xxx
 
@@ -219,6 +237,8 @@ num.toString();// '20'
 num.toString(2);//'10100'
 num.toString(8);//'24'
 num.toString(16);//'14'
+
+//如果 num不是Number类型，toString函数传参是无效的
 ```
 
 `字符串插值`
@@ -233,3 +253,6 @@ function getNum(){
 }
 let str = `苹果的数量有${getNum()}个`;
 ```
+
+## Symbol类型
+内容很多，暂时可以不了解（主要目前我还没有在实际生产中用到）
