@@ -28,10 +28,17 @@
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       },
+      auto2top: true,/* 自动顶部 */
       subMaxLevel: 2
     }
   </script>
-  <script src="docsify.min.js"></script>
+  <!-- <script src="docsify.min.js"></script> 用cdn的资源了，本地就不用了-->
+  <!-- docsify的js依赖 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <!-- 分页导航 -->
+  <script src="//fastly.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!--在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码-->
+  <script src="//fastly.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
 
 </html>
