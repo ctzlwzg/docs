@@ -7,6 +7,7 @@
   - [常用语法](zh-cn/frontEnd/js/js)
   - [变量](zh-cn/frontEnd/js/variable)
   - [数据类型](zh-cn/frontEnd/js/dataType)
+  - [期约（Promise）](zh-cn/frontEnd/js/promise)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction)
 
 * **Vue**
@@ -47,5 +48,7 @@
 
   - [git 个人总结](zh-cn/other/git/git总结)
 
-* 面试总结
+* 其他
   - [面试总结](zh-cn/other/interview/面试总结.md)
+  - [个人简历](zh-cn/other/personalResume/index.md)
+  - [工作总结](zh-cn/other/experience.md)
