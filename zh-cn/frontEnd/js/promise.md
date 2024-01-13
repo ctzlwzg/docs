@@ -324,6 +324,32 @@ p4.then((data) => {
 
 !> p3任务最先完成，是失败的状态，那么p4的状态也是失败的状态
 
-## 消除回调
+#### Promise.finally()
+该方法用于给期约添加onFinally处理程序，这个处理程序在期约转换为解决或拒绝状态使都会执行。这个方法可以避免onResolved和onRejected处理程序中出现冗余代码。但onFinally处理程序没有办法知道期约的状态使解决的还是拒绝，所以这个方法主要用于添加清理代码，如：`移除loading`，`按钮的disabled状态`等等
 
+## 消除回调
 ### async await 关键字
+
+> 这仅仅是一个语法糖，主要学习还是在上面的知识点
+
+```js
+function fn () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // resolve('成功');
+      reject('失败');
+    }, 1000);
+  })
+}
+(async () => {
+  // 需要捕获一下错误的情况
+  try {
+    const data = await fn();// 成功的数据在这里获取
+    console.log(data);
+  } catch (error) {
+    console.log(error); // 如果fn函数返回错误状态的promise，在这里获取
+  }
+})()
+```
+
+!> 记得需要trycatch捕获一下错误，更加严谨
