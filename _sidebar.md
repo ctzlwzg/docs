@@ -30,6 +30,7 @@
 
   - [npm相关](zh-cn/frontEnd/node/nodeCommand.md)
   - [n包](zh-cn/frontEnd/node/nCommand.md)
+  - [nvm工具](zh-cn/frontEnd/node/nvmTool.md)
 
 * **后端**
 
