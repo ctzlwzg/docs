@@ -10,13 +10,13 @@
   - [常用语法](zh-cn/frontEnd/js/js.md)
   - [变量](zh-cn/frontEnd/js/variable.md)
   - [数据类型](zh-cn/frontEnd/js/dataType.md)
+  - [预编译](zh-cn/frontEnd/js/预编译.md)
   - [期约（Promise）](zh-cn/frontEnd/js/promise.md)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction.md)
 
 * **网络**
 
   - [跨域](zh-cn/frontEnd/network/http.md)
-  - [cookie](zh-cn/frontEnd/network/cookie.md)
 * **Vue**
 
   - [事件车](zh-cn/frontEnd/vue/bus.md)
