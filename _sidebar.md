@@ -11,6 +11,7 @@
   - [变量](zh-cn/frontEnd/js/variable.md)
   - [数据类型](zh-cn/frontEnd/js/dataType.md)
   - [预编译](zh-cn/frontEnd/js/预编译.md)
+  - [作用域与作用域链](zh-cn/frontEnd/js/作用域与作用域链.md)
   - [期约（Promise）](zh-cn/frontEnd/js/promise.md)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction.md)
 
