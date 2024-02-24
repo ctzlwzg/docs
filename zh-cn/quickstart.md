@@ -22,8 +22,7 @@ docsify init ./docs
 - `README.md` 会做为主页内容渲染
 - `.nojekyll` 用于阻止 GitHub Pages 忽略掉下划线开头的文件
 
-直接编辑 `docs/README.md` 就能更新文档内容，当然也可以[添加更多页面](zh-cn/more-pages.md)。
-
+直接编辑 `docs/README.md` 就能更新文档内容。
 ## 本地预览
 
 通过运行 `docsify serve` 启动一个本地服务器，可以方便地实时预览效果。默认访问地址 http://localhost:3000 。
@@ -94,5 +93,3 @@ cd docs && python -m http.server 3000
     }
   </script>
 ```
-
-对比 [el 设置](zh-cn/configuration.md#el)。
