@@ -15,14 +15,8 @@
 
 ## 关注
 
-- 关注微信公众号 [吴正刚](http://image.wuzhenggang.com/gzh.jpg)
-  <img src="http://image.wuzhenggang.com/gzh.jpg" alt="logo" srcset="" width="150px" height="150px">
-
-<!-- - 关注微信小程序 [吴正刚的博客](http://image.wuzhenggang.com/xcx.jpg) (目前还在测试中，敬请期待)
-  <img src="http://image.wuzhenggang.com/xcx.jpg" alt="logo" srcset="" width="150px" height="150px">
-- 关注我的官网 [吴正刚的博客](https://www.wuzhenggang.com) (目前还在搭建中，敬请期待) -->
-
-  <!-- https://www.wuzhenggang.com -->
+- 关注微信公众号  <font color="#42b983">吴正刚</font>
+  <img src="./zh-cn/picture/我的/公众号.jpg" alt="logo" srcset="" width="150px" height="150px">
 
 - 点击右上角 github 图标 给予关注<img src="https://github.githubassets.com/images/icons/emoji/star.png" alt="star" srcset="" width="20px" height="20px">,(虽然代码是托管在 gitee,☺)
 
