@@ -14,6 +14,7 @@
   - [作用域与作用域链](zh-cn/frontEnd/js/作用域与作用域链.md)
   - [闭包](zh-cn/frontEnd/js/闭包.md)
   - [对象与构造函数](zh-cn/frontEnd/js/对象与构造函数.md)
+  - [原型与原型链](zh-cn/frontEnd/js/原型与原型链.md)
   - [期约（Promise）](zh-cn/frontEnd/js/promise.md)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction.md)
 
