@@ -24,25 +24,12 @@
 * **Vue**
 
   - [事件车](zh-cn/frontEnd/vue/bus.md)
-  - [vuex](zh-cn/frontEnd/vue/vuex.md)
-
-* **React**
-
-  - [React](zh-cn/frontEnd/react/reactBase.md)
 
 * **node**
 
   - [npm相关](zh-cn/frontEnd/node/nodeCommand.md)
   - [n包](zh-cn/frontEnd/node/nCommand.md)
   - [nvm工具](zh-cn/frontEnd/node/nvmTool.md)
-
-* **后端**
-
-  - [java](zh-cn/expect.md)
-
-  - [spring](zh-cn/expect.md)
-
-  - [springboot](zh-cn/expect.md)
 
 * **服务器**
 
