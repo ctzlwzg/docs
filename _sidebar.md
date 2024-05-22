@@ -17,6 +17,7 @@
   - [原型与原型链](zh-cn/frontEnd/js/原型与原型链.md)
   - [类](zh-cn/frontEnd/js/Class.md)
   - [期约（Promise）](zh-cn/frontEnd/js/promise.md)
+  - [代理与反射](zh-cn/frontEnd/js/代理与反射.md)
   - [工具函数](zh-cn/frontEnd/js/utilsFunction.md)
 
 * **网络**
