@@ -51,5 +51,6 @@
 
 * 其他
   - [面试总结](zh-cn/other/interview/面试总结.md)
+  - [面试题相关代码](zh-cn/other/interview/面试题相关代码.md)
   - [个人简历](zh-cn/other/personalResume/index.md)
   - [工作总结](zh-cn/other/experience.md)
