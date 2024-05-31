@@ -18,6 +18,7 @@ constructor关键字用于在类定义块内部创建类的构造函数。方法
       this.name = name;
       this.age = age;
       this.sex = sex;
+      /* 可以写初始化的值，如果没有初始化的值，也可以不定义，后续可以继续给实例添加新成员 */
       this._value = '';
     }
     getName () {
@@ -42,7 +43,6 @@ constructor关键字用于在类定义块内部创建类的构造函数。方法
 
   console.log(Object.getOwnPropertyDescriptor(p1, 'value'));
   console.log(Object.getOwnPropertyDescriptor(p1.__proto__, 'value'));
-
 ```
 ![class1](../../picture/class类/class1.png)
 #### 对比构造函数
@@ -103,3 +103,5 @@ console.log(Object.getOwnPropertyDescriptor(p1.__proto__, 'value'));
 
 ![class转function](../../picture/class类/class转function.png)
 
+## class 继承
+暂不学习
