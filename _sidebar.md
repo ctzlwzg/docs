@@ -50,6 +50,7 @@
   - [git 个人总结](zh-cn/other/git/git总结.md)
 
 * 其他
+  - [事件循环](zh-cn/other/事件循环.md)
   - [面试总结](zh-cn/other/interview/面试总结.md)
   - [面试题相关代码](zh-cn/other/interview/面试题相关代码.md)
   - [个人简历](zh-cn/other/personalResume/index.md)
