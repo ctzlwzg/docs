@@ -26,6 +26,7 @@
 * **Vue**
 
   - [mustache模板引擎](zh-cn/frontEnd/vue/mustache模板引擎.md)
+  - [抽象语法树AST](zh-cn/frontEnd/vue/抽象语法树AST.md)
   - [事件车](zh-cn/frontEnd/vue/bus.md)
 
 * **node**
