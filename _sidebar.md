@@ -27,6 +27,7 @@
 
   - [mustache模板引擎](zh-cn/frontEnd/vue/mustache模板引擎.md)
   - [抽象语法树AST](zh-cn/frontEnd/vue/抽象语法树AST.md)
+  - [虚拟DOM和diff算法](zh-cn/frontEnd/vue/虚拟DOM和diff算法.md)
   - [事件车](zh-cn/frontEnd/vue/bus.md)
 
 * **node**
