@@ -25,7 +25,7 @@ Promise A+ 规定：
 
 ## Promise API
 
-ES6提供了一套API，实现了Promise A+规范
+ES6提供了一套API，实现了Promise A+规范。并且还扩展了一些方法。
 
 使用：
 ```js
@@ -59,7 +59,7 @@ catch((reason)=>{
 // 任务开始
 // 任务结束
 // 1
-// TODO：为什么先执行‘任务结束’，而后打印 1这个问题我会在后面在其他章节解释
+// 为什么先执行‘任务结束’，而后打印 1这个问题我会在后面在其他章节解释。在事件循环中解释了。
 ```
 
 ### catch方法
@@ -80,6 +80,100 @@ catch((reason)=>{
      - 后续处理执行`有错`，新任务的状态为`失败`，数据为异常状态
      - 后续执行返回的是一个任务对象（new Promise了），新任务的状态和数据与该任务对象一致
 
+##### 第一种情况：
+```js
+ let p = new Promise((resolve, reject) => {
+    resolve('成功1');
+  })
+  let p1 = p.catch(res => {
+  
+  })
+  setTimeout(() => {
+    console.log(p);
+    console.log(p1);
+  }, 100);
+
+  // 打印结果
+  // Promise {<fulfilled>: '成功1'}
+  // Promise {<fulfilled>: '成功1'}
+```
+两次的打印结果相同，应为p任务没有调用then方法，所以p1任务的状态和p相同
+
+> 这种情况常见的例子就是链式调用`.then().catch().finally()`
+
+##### 第二种情况：
+```js
+let p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('成功1');
+  }, 1000);
+})
+let p1 = p.then(res => {
+})
+setTimeout(() => {
+  console.log(p);
+  console.log(p1);
+}, 100);
+
+  // 打印结果
+  // Promise {<pending>}
+  // Promise {<pending>}
+```
+1s前p任务处于pedding状态，此时p1任务也处于pedding状态。
+
+##### 第三种情况：
+这种成功的情况就不记录了。
+
+##### 第四种情况：
+```js
+let p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('成功1');
+  }, 100);
+})
+let p1 = p.then(res => {
+  throw new Error('失败');
+})
+p1.catch(() => { })
+setTimeout(() => {
+  console.log(p);
+  console.log(p1);
+}, 1000);
+// 打印结果
+// Promise {<fulfilled>: '成功1'}
+// Promise {<rejected>: Error: 失败}
+```
+因为p任务的的后续处理抛出错误，那么新任务的状态就是失败，所以p1的状态就是失败。
+
+
+##### 第五种情况：
+```js
+let p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('成功1');
+  }, 100);
+})
+let p1 = p.then(res => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // resolve('成功2');
+      reject('失败2');
+    }, 200);
+  })
+})
+p1.catch(() => { })
+setTimeout(() => {
+  console.log(p);
+  console.log(p1);
+}, 1000);
+// 打印结果
+// Promise {<fulfilled>: '成功1'}
+// Promise {<rejected>: '失败2'}
+```
+p任务的后续处理返回是一个promise对象，处理结果为失败，那么p1的状态也是失败
+
+> 不管是那种情况，p1的类型都是promise对象，即链式调用的`.then`,`.catch`,`.finally`返回的类型都是promise对象。
+
 ### Promise的静态方法
 
 | 方法名 | 含义 |
@@ -90,6 +184,8 @@ catch((reason)=>{
 | Promise.any(任务数组) | 返回一个任务，任务数组`任一成功则成功`，任务`全部失败则失败`  |
 | Promise.allSettled(任务数组) | 返回一个任务，任务数组`全部已决则成功`，该任务`不会失败` |
 | Promise.race(任务数组) | 返回一个任务，任务数组中`最先返回`已决则已决，状态和其一致 |
+
+> 实际开发中，自己只用到了Promise.all。
 
 #### Promise.resolve(data);Promise.reject(reason)
 ```js
