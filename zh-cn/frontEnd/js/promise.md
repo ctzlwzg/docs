@@ -15,7 +15,7 @@ Promise A+ 规定：
   根据常理，他们之间存在以下逻辑：
     - 任务总是从未决阶段变成已决阶段，无法逆行
     - 任务总是从挂起状态变到完成状态或失败状态，无法逆行
-    - 时间不能倒流，历史不能改写，任务一旦完成或失败，状态就固定下来了，永远无法改变
+    - 任务一旦完成或失败，状态就固定下来了，永远无法改变
 3. `挂起->完成`的过程，称之为`resolve`；`挂起->失败`的过程，称之为`reject`。任务完成时，可能有一个相关的数据，任务失败时，可能有一个失败原因。
 
    ![alt text](../../picture/promise/promise1.png)
@@ -37,7 +37,7 @@ const p1 = new Promise((resolve, reject) => {
   resolve('1');
   // 任务一旦到了已决状态，后续调用resolve或者reject函数都无效了。
   resolve('12');
-  // reject('失败了')
+  reject('失败了')
   console.log('任务结束');
 })
 
@@ -62,6 +62,8 @@ catch((reason)=>{
 // 为什么先执行‘任务结束’，而后打印 1这个问题我会在后面在其他章节解释。在事件循环中解释了。
 ```
 
+> `resolve`或者`reject`后面的代码还是会执行的。但是状态不会再改变了。
+
 ### catch方法
 `.catch(OnRejected)` == `.then(null,onRejected)`
 
@@ -75,12 +77,13 @@ catch((reason)=>{
 
    - 若`前面任务`没有相关的后续处理，新任务的状态和前任务一致，数据为前任务的数据
    - 若`前面任务`有后续处理但还未执行，新任务挂起`pedding`
-   - 若`前面任务`后续处理执行了，则根据后续处理的情况确定新任务的状态
+   - 若`前面任务`后续处理执行了（**这里的执行可以是成功的后续处理，也可以是失败的后续处理**），则根据后续处理的情况确定新任务的状态
      - 后续处理执行`无错`，新任务的状态为`完成`，数据为后续处理的返回值
      - 后续处理执行`有错`，新任务的状态为`失败`，数据为异常状态
      - 后续执行返回的是一个任务对象（new Promise了），新任务的状态和数据与该任务对象一致
 
 ##### 第一种情况：
+> 没有后续处理的意思是，resolve后续没有then方法处理（或者有then方法，但第一个参数为null），reject后续没有catch处理(或者有then方法，但第二个参数为null);
 ```js
  let p = new Promise((resolve, reject) => {
     resolve('成功1');
@@ -197,7 +200,7 @@ console.log(p2);//Promise {<rejected>: 1}
 ```
 
 #### Promise.all(任务数组)
-1. 都是成功的情况
+1. 都是成功的情况，返回成功的数组
 
   ```js
   const p1 = new Promise((resolve, reject) => {
@@ -390,7 +393,7 @@ console.log(p2);//Promise {<rejected>: 1}
   !> 即使有任务失败，p4的任务状态还是`fulfilled`成功的。
 
 #### Promise.race(任务数组)
-
+返回一个新的Promise，第一个完成的Promise的结果状态就是最终的结果状态
 ```js
 const p1 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -449,3 +452,141 @@ function fn () {
 ```
 
 !> 记得需要trycatch捕获一下错误，更加严谨
+
+## 简单实现Promise
+
+```js
+const PADDING = 'padding'/* 等待状态 */;
+const FULFILLED = 'fulfilled'/* 完成状态 */;
+const REJECTED = 'rejected'/* 失败状态 */;
+class MyPromise {
+  #status = PADDING;
+  #result;
+  #handlers = [];
+  constructor(executor) {
+    /* 待处理函数，收集then 的回调函数 */
+    /* 为什么不把reslove和reject放到原型上呢？
+    因为reslove和reject会涉及到this和状态。外面调用resolve和reject的时候，
+    this指向的应该是MyPromise1实例，而不是window（或者undefined）。 所以就不能放到原型上*/
+    const resolve = (data) => {
+      this.#changeStatus(FULFILLED, data);
+    }
+    const reject = (reason) => {
+      this.#changeStatus(REJECTED, reason);
+    }
+    try {
+      executor(resolve, reject);
+    } catch (error) {
+      this.#changeStatus(REJECTED, error);
+    }
+  }
+  /* 修改状态 */
+  #changeStatus (status, result) {
+    /* 状态只能由未决变成已决 */
+    if (this.#status !== PADDING) return;
+    this.#status = status;
+    this.#result = result;
+    this.#run();
+  }
+  /**
+   * then方法
+   * @param {*} onFulfilled 成功回调
+   * @param {*} onRejected 失败回调
+   * @returns 
+   */
+  then (onFulfilled, onRejected) {
+    return new MyPromise((resolve, reject) => {
+      /* 收集回调函数
+        包含上一个任务的成功回调和失败回调，和当前任务的
+      */
+      this.#handlers.push({
+        onFulfilled,
+        onRejected,
+        resolve,
+        reject
+      })
+      /* 需要立即执行一次run方法,因为执行器（executor）可能存在直接调用resolve或者reject的情况 */
+      this.#run();
+    });
+  }
+
+  catch (onRejected) {
+    return this.then(null, onRejected);
+  }
+
+  /* 判断是否为promise */
+  #isPromiseLike (value) {
+    return value !== null && typeof value === 'object' && typeof value.then === 'function';
+  }
+
+  /* 把then方法中的回调函数放到微任务队列中执行 */
+  #runMicroTask (callback) {
+    /* 这里有一个问题： setTimeout中的回调函数在延时队列中执行，而不是在微队列中执行
+    在事件循环那篇文章中说，回调函数添加到微队列中有两种方式一种是Promise.resolve().then()，
+    另一种就是MutationObserver，我们可以通过MutationObserver来模拟微队列
+    */
+    setTimeout(() => {
+      callback();
+    }, 0);
+  }
+
+  #runOne (callback, resolve, reject) {
+    this.#runMicroTask(() => {
+      /* 1.判断callback是否为函数 */
+      if (typeof callback === 'function') {
+        try {
+          const data = callback(this.#result);
+          /* 判断data是否为promise */
+          console.log(data);
+          if (this.#isPromiseLike(data)) {
+            /* 返回的是一个任务对象，那么新任务的状态和数据与该任务对象一致 */
+            /* 到底执行的是resolve还是reject，
+            取决于回调函数的返回值的后续处理，
+            如果成功就执行resolve，失败就执行reject */
+            /* 你成功我就调用resolve，你失败我就调用reject，并且传递的数据和你一样 */
+            // data.then((data) => {
+            //   resolve(data);
+            // }, (reason) => {
+            //   reject(reason);
+            // })
+            /* 简写成 */
+            data.then(resolve, reject);
+          } else {
+            /* 如果data不是promise，则直接调用resolve */
+            resolve(data);
+          }
+        } catch (error) {
+          /* 前一个任务后续处理有错，新任务的状态为失败，数据为异常数据 */
+          reject(error);
+        }
+      } else {
+        /* callback不是函数的情况 */
+        /* 新任务的状态和前任务相同，数据为前任务的数据 */
+        const settled = this.#status == FULFILLED ? resolve : reject;
+        settled(this.#result);
+      }
+    })
+  }
+
+  #run () {
+    /* 后续任务还未执行，新任务挂起(默认就是挂起的状态) */
+    if (this.#status == PADDING) return;
+    while (this.#handlers.length) {
+      /* 先进先出 */
+      const {
+        onFulfilled,
+        onRejected,
+        resolve,
+        reject
+      } = this.#handlers.shift();
+      // console.log(this.#status);
+      /* 新任务的状态取决于前面任务的后续处理 */
+      if (this.#status === FULFILLED) {
+        this.#runOne(onFulfilled, resolve, reject);
+      } else if (this.#status === REJECTED) {
+        this.#runOne(onRejected, resolve, reject);
+      }
+    }
+  }
+}
+``` 
