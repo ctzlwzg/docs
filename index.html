@@ -24,7 +24,15 @@
         '/.*/_sidebar.md': '/_sidebar.md'
       },
       auto2top: true,/* 自动顶部 */
-      subMaxLevel: 2
+      subMaxLevel: 2,
+
+      /* 字数统计 */
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      }
     }
   </script>
   <script src="docsify.min.js"></script>
@@ -35,6 +43,8 @@
   <script src="//fastly.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <!--在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码-->
   <script src="//fastly.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 字数统计 -->
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 </body>
 
 </html>
