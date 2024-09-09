@@ -95,3 +95,9 @@ console.log(value);
 > 先使用const ,let次之
 
 !> 在严格模式下有些代码会报错，需注意。如使用vite来做开发服务器，默认是严格模式的。
+
+## globalThis 对象
+指全局环境下的`this`。
+
+- 浏览器环境：`window`
+- Node环境：`global`
