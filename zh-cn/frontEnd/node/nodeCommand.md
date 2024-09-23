@@ -58,7 +58,10 @@ npm config list
 ```
 > 配置国内淘宝镜像地址（下载包更快）
 ```bash
+// 已废弃
 npm config set registry https://registry.npm.taobao.org/
+// 最新
+npm config set registry https://registry.npmmirror.com
 ```
 > 验证修改是否生效
 ```bash
@@ -84,3 +87,8 @@ npm config get registry
 > 如使用 cnpm 命令，一定需要带参数安装 -S ，-D, -g
 
 !> npm 与 cnpm 命令不要同时使用，避免不必要的问题
+
+
+### 删除node (mac端)
+1. cd /usr/local/bin
+2. rm -rf node
