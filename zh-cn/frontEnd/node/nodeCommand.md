@@ -32,6 +32,15 @@
 ```
 
 ## 其他命令
+
+> 查看可安装的包
+
+npm view xxx versions
+
+> 安装指定版本
+
+npm install xxx@1.2.0
+
 > npm uninstall 包名 参数 / npm un 包名 参数
 
 - 删除对应的包
