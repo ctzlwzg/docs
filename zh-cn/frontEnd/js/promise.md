@@ -453,6 +453,64 @@ function fn () {
 
 !> 记得需要trycatch捕获一下错误，更加严谨
 
+### 优雅地处理异步函数可能抛出的错误
+```js
+/**
+ * 将异步函数包装成一个更安全的异步函数
+ * 此装饰器函数捕获异步函数执行时可能抛出的错误，使错误处理更加集中和统一
+ * 特别适用于Promise-based的异步编程，提高代码的健壮性
+ * 
+ * @param {Function} asyncFunc - 需要包装的异步函数
+ * 该函数应该返回一个Promise对象
+ * @returns {Function} 包装后的异步函数，返回一个包含错误对象和结果的数组
+ */
+export const safeAsync = (asyncFunc) => {
+  return async function (...args) {
+    try {
+      const result = await asyncFunc(...args);
+      return [null, result]; // 返回一个数组，第一个元素为null表示没有错误，第二个元素为结果
+    } catch (err) {
+      return [err, null]; // 返回一个数组，第一个元素为错误对象，第二个元素为null
+    }
+  };
+}
+```
+使用方式：
+```js
+let [err, data] = await safeAsync(getInfo)();
+if (!err) {
+  this.data = data;
+}
+```
+
+对于Promise.all函数也可以使用
+```js
+ const [err, dataList] = await safeAsync(() => {
+  return Promise.all([
+    getMasterList({
+      user_name: '',
+      role_id: '',
+      agency_id: '',
+      mobile: '',
+      nick_name: '',
+      current: 1,
+      size: 10
+    }),
+    getOrganizationInfo(),
+    getRoleInfo()
+  ]);
+})();
+console.log(err, dataList);
+if (!err) {
+  return {
+    tableData: dataList[0].result.data,
+    total: dataList[0].result.total,
+    selectOrganization: dataList[1].result,
+    selectRole: dataList[2].result
+  };
+}
+```
+对于Promise的其他静态方法也是一样的做法。
 ## 简单实现Promise
 
 ```js
