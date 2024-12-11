@@ -31,6 +31,7 @@
   - [虚拟DOM和diff算法](zh-cn/frontEnd/vue/虚拟DOM和diff算法.md)
   - [事件车](zh-cn/frontEnd/vue/bus.md)
 
+ - [nuxt2总结](zh-cn/frontEnd/nuxt/nuxt2总结.md)
 * **node**
 
   - [npm相关](zh-cn/frontEnd/node/nodeCommand.md)
