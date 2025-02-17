@@ -33,6 +33,10 @@
 
 ## 其他命令
 
+> 查看全局安装的包
+
+npm list -g --depth=0
+
 > 查看可安装的包
 
 npm view xxx versions
@@ -56,6 +60,7 @@ npm install xxx@1.2.0
   - 该更新不会跨大版本更新，比如vue 2.6.11 不会更新到 vue 3.xx.xx，只会更新到如： 2.7.
   - 如vue现在版本^2.6.11，npm update vue 以后 package.json 文件中还是^2.6.11版本，而package-lock.json中为 2.(大于等于6).x，即2.7.15
   - 在补充一点，如果删除package-lock.json，手动修改版本号如 ^2.6.11 改成 ^2.7.11，在package.json显示 ^2.7.11，而在package-lock.json中显示 2.7.15， 对应大版本的最新版本 **2版本不会变成3**
+- 命令后增加`-g`可以全局更新 即 `npm update -g 包名`
 
 > 清除npm缓存，一般不需要清理
 ```bash
