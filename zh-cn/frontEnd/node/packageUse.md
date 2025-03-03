@@ -73,3 +73,29 @@ SCSS 预处理器
 注意：有些项目中会安装node-sass，这个是sass的旧版本，现在用的是sass，所以老项目的话需要单独再安装其他包。
 
 最新项目直接安装sass即可
+
+## check-node-version
+用于运行命令前检查node版本。
+> npm install --save-dev check-node-version
+
+在package.json中添加命令：
+
+```json
+"predev": "check-node-version --node '>=14.18.1 <15.0.0'",
+"dev": "vue-cli-service serve --mode dev",
+```
+比如有一条`npm run dev`命令，那么对应配置一条以`pre`开头的命令，比如`predev`，然后运行`npm run dev`就会检查node版本，如果版本不对就会报错，如果版本对就会运行`npm run dev`
+
+看下失败的情况：
+```
+haiye@wzg haiye_phonemom_web % npm run dev
+
+> haiye_phonemom_web@0.1.0 predev
+> check-node-version --node '>=14.18.1 <15.0.0'
+
+node: 15.14.0
+Wanted node version >=14.18.1 <15.0.0 (>=14.18.1 <15.0.0)
+To install node, see https://nodejs.org/download/release/v14.18.1/
+```
+
+在不符合的版本下，会报错，并且会告诉开发者需要的node版本范围，此时再结合一下`nvm`安装切换node版本，就可以解决这个问题了。
