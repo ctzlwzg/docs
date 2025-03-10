@@ -99,3 +99,18 @@ To install node, see https://nodejs.org/download/release/v14.18.1/
 ```
 
 在不符合的版本下，会报错，并且会告诉开发者需要的node版本范围，此时再结合一下`nvm`安装切换node版本，就可以解决这个问题了。
+
+## vite-plugin-vue-devtools
+vue的开发工具。增强 Vue 开发人员体验的工具。[官网介绍](https://devtools.vuejs.org/getting-started/introduction)
+
+> npm add -D vite-plugin-vue-devtools
+在vite.config.js中添加：
+```ts 
+// 在vite.config.ts文件中添加
+import vueDevTools from 'vite-plugin-vue-devtools'
+export default defineConfig({
+  plugins: [
+    vueDevTools(),
+  ]
+})
+```
