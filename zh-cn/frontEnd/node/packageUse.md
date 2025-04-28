@@ -81,9 +81,12 @@ SCSS 预处理器
 在package.json中添加命令：
 
 ```json
-"predev": "check-node-version --node '>=14.18.1 <15.0.0'",
+"predev": "check-node-version --node \">=14.18.1 <15.0.0\"",
 "dev": "vue-cli-service serve --mode dev",
 ```
+!> 注意：windows系统下，CMD 不支持单引号，需要转义双引号以确保 JSON 语法正确。
+
+
 比如有一条`npm run dev`命令，那么对应配置一条以`pre`开头的命令，比如`predev`，然后运行`npm run dev`就会检查node版本，如果版本不对就会报错，如果版本对就会运行`npm run dev`
 
 看下失败的情况：
@@ -99,6 +102,7 @@ To install node, see https://nodejs.org/download/release/v14.18.1/
 ```
 
 在不符合的版本下，会报错，并且会告诉开发者需要的node版本范围，此时再结合一下`nvm`安装切换node版本，就可以解决这个问题了。
+
 
 ## vite-plugin-vue-devtools
 vue的开发工具。增强 Vue 开发人员体验的工具。[官网介绍](https://devtools.vuejs.org/getting-started/introduction)
