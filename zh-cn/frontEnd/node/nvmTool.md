@@ -104,6 +104,8 @@ nvm use
 
 无需指定node版本，因为配置在了.nvmrc文件中
 
+!> 注意：只有在mac系统重可以不指定node版本，windows系统还是指定node版本，不管.nvmrc文件是否配置
+
 ### 你在使用 nvm 安装 Node.js v14.21.0 时遇到了编译错误
 Node.js v14.21.0 不支持 Apple Silicon (M1/M2) 芯片：
 
